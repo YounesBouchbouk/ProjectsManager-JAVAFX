@@ -1,0 +1,52 @@
+.button1
+{
+-fx-background-color : "Transparant";
+
+}
+.button1:hover
+{
+-fx-background-color :   #EBEAEA ;
+
+}
+.button1:pressed
+{
+-fx-background-color : #2F2B43 ;
+
+}
+
+.button2
+{
+-fx-background-color : #e10f89;
+
+}
+.button2:hover
+{
+-fx-background-color :  #e10f89 ;
+
+}
+.button2:pressed
+{
+-fx-background-color : #2F2B43 ;
+
+}
+
+
+.tachebtn
+{
+-fx-background-color : #A69CAC;
+
+}
+.tachebtn:hover
+{
+-fx-background-color :  #e10f89 ;
+
+}
+.tachebtn:pressed
+{
+-fx-background-color : #2F2B43 ;
+
+}
+
+.userimage : {
+-fx-background-radius  : 60;
+}

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="584.0" prefWidth="1069.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AuthenticationCnt">
+   <children>
+      <VBox layoutX="621.0" layoutY="78.0" prefHeight="428.0" prefWidth="385.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="385.0">
+               <children>
+                  <ImageView fitHeight="88.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/login.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="60.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="88.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/logopng&amp;.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="signioerror" alignment="CENTER" prefHeight="13.0" prefWidth="386.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="Emailuser" prefHeight="41.0" prefWidth="385.0" promptText="Email@exemple.com" style="-fx-background-radius: 50;">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </TextField>
+            <PasswordField fx:id="Password" prefHeight="41.0" prefWidth="385.0" promptText="*****************" style="-fx-background-radius: 20;">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </PasswordField>
+            <Label text="Did you forget your password ?" textFill="#fc0000" underline="true">
+               <VBox.margin>
+                  <Insets left="30.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Button fx:id="loginbtn" mnemonicParsing="false" onAction="#loginauthentication" prefHeight="44.0" prefWidth="197.0" style="-fx-border-color: #4748ee; -fx-border-width: 3; -fx-background-color: transparant; -fx-font-size: 15;" styleClass="loginbtn" stylesheets="@styles/style.css" text="Login" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets left="100.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Arabic Typesetting" size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="switchsignup" alignment="CENTER" onKeyPressed="#rightdrop" onMouseClicked="#rightdrop" prefHeight="35.0" prefWidth="385.0" text="Don't have Account yet ? SignUp" textFill="#01011e" underline="true">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="33.0" layoutY="20.0" prefHeight="544.0" prefWidth="435.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="414.0">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/logopng&amp;.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label fx:id="Signuperror" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="438.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="425.0">
+               <children>
+                  <TextField fx:id="firstname" prefHeight="39.0" prefWidth="187.0" promptText="First Name" style="-fx-background-radius: 20;">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </TextField>
+                  <TextField fx:id="lastname" prefHeight="39.0" prefWidth="186.0" promptText="Last Name" style="-fx-background-radius: 20;">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <TextField fx:id="username" prefHeight="39.0" prefWidth="420.0" promptText="UserName" style="-fx-background-radius: 20;">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="15.0" right="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="emailsignup" prefHeight="39.0" prefWidth="431.0" promptText="Email" style="-fx-background-radius: 20;">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="15.0" right="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </TextField>
+            <HBox alignment="CENTER" prefHeight="51.0" prefWidth="435.0" style="-fx-background-radius: 20;">
+               <padding>
+                  <Insets left="7.0" right="7.0" />
+               </padding>
+               <children>
+                  <PasswordField fx:id="upassword" prefHeight="39.0" prefWidth="194.0" promptText="Password" style="-fx-background-radius: 20;">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </PasswordField>
+                  <PasswordField fx:id="aconfirm" prefHeight="39.0" prefWidth="194.0" promptText="Confirmepassword" style="-fx-background-radius: 20;" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="435.0">
+               <children>
+                  <Label text="Date of Birth">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="date" prefHeight="33.0" prefWidth="197.0" style="-fx-background-radius: 20; -fx-background-color: transparant;">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </DatePicker>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="425.0">
+               <children>
+                  <Label text="Spiciality :">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="Speciality" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+                  <Label text="Gender" />
+                  <ChoiceBox fx:id="gendercheckbox" prefWidth="30.0">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <Button fx:id="signupbtn" mnemonicParsing="false" onAction="#signup" prefHeight="45.0" prefWidth="177.0" style="-fx-border-radius: 20; -fx-background-color: transparant; -fx-border-color: #4748ee;" text="SignUp">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="130.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#leftdrop" prefHeight="14.0" prefWidth="426.0" text="Already Have Account ? " underline="true">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </VBox>
+      <Pane fx:id="vb_content" prefHeight="531.0" prefWidth="546.0" style="-fx-background-color: #4748ee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox fx:id="boxclose" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="147.0">
+               <children>
+                  <Label fx:id="Closebtn" onMouseClicked="#CloseApp" prefHeight="29.0" prefWidth="33.0" style="-fx-alignment: center; -fx-background-color: black; -fx-background-radius: 20;" text="X" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="30.0" prefWidth="33.0" style="-fx-alignment: center; -fx-background-color: black; -fx-background-radius: 20;" text="-" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </HBox>
+            <ImageView fitHeight="349.0" fitWidth="524.0" layoutX="9.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/description.png" />
+               </image>
+            </ImageView>
+            <HBox alignment="CENTER" layoutX="80.0" layoutY="467.0" prefHeight="54.0" prefWidth="336.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="81.0" onMouseClicked="#facebook" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/Socialicons/facebook.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="instagramm" fitHeight="50.0" fitWidth="48.0" onMouseClicked="#instagramme" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/Socialicons/instagram.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="49.0" fitWidth="50.0" onMouseClicked="#twitter" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/Socialicons/twitter.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <ImageView fx:id="imageview" fitHeight="208.0" fitWidth="226.0" layoutX="160.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/Logopng.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>
