@@ -1,4 +1,5 @@
 package com.example.demo;
+import com.example.demo.models.UserSession;
 import com.example.demo.models.db;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -34,6 +35,7 @@ public class AuthenticationCnt implements Initializable {
 
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
+    ResultSet userLogedin = null;
     Connection con = null;
     Stage dialogStage = new Stage();
     Scene scene;
@@ -178,11 +180,11 @@ public class AuthenticationCnt implements Initializable {
 
             } else {
                 setLblError(Color.GREEN, "Login Successful..Redirecting..");
-
-
+                int Iduser = resultSet.getInt("idUtilisateur");
                 Node source = (Node) event.getSource();
                 dialogStage = (Stage) source.getScene().getWindow();
                 dialogStage.close();
+                UserSession.getInstace(email, Iduser);
                 scene = new Scene(FXMLLoader.load(getClass().getResource("Dashboardview.fxml")));
                 dialogStage.setScene(scene);
                 dialogStage.show();
@@ -224,7 +226,7 @@ public class AuthenticationCnt implements Initializable {
 
             try {
 
-                preparedStatement = con.prepareStatement(Query);
+                preparedStatement = con.prepareStatement(Query , Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setString(1, FirstName);
                 preparedStatement.setString(2, Email);
                 preparedStatement.setString(3, password);
@@ -232,9 +234,22 @@ public class AuthenticationCnt implements Initializable {
                 preparedStatement.setString(5, gendercheckbox.getValue());
                 preparedStatement.setString(6, DateNaiss);
                 preparedStatement.setString(7, Speciality.getValue());
-                preparedStatement.executeUpdate();
+                int Id ;
+                Id =  preparedStatement.executeUpdate();
+                if(Id == 1){
+                    setLblError(Color.GREEN, "SignUp Successful..Please Login..");
+                    int candidateId = 0;
+                    ResultSet rs = preparedStatement.getGeneratedKeys();
+                    if(rs.next())
+                        candidateId = rs.getInt(1);
+                    System.out.println("hanta ha id");
 
-                setLblError(Color.GREEN, "SignUp Successful..Please Login..");
+                    System.out.println(candidateId);
+
+                }else{
+                    setLblError(Color.RED, "Error SignUp ..Please Try Again..");
+
+                }
 
                 TranslateTransition translatehbox = new TranslateTransition(Duration.seconds(3) , boxclose );
                 TranslateTransition translat = new TranslateTransition(Duration.seconds(2) , vb_content);

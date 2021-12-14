@@ -5,14 +5,17 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -114,7 +117,7 @@
                         <Image url="@Assets/Unknown_person.jpg" />
                      </image>
                   </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="said ait mbarek" wrappingWidth="231.0">
+                  <Text fx:id="sessionName" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="said ait mbarek" wrappingWidth="231.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -122,7 +125,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="ID" wrappingWidth="231.0">
+                  <Text fx:id="sessionId" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="ID" wrappingWidth="231.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -147,6 +150,11 @@
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
+            </Button>
+            <Button fx:id="addprj" mnemonicParsing="false" onAction="#HandlClick" prefHeight="50.0" prefWidth="270.0" styleClass="button1" stylesheets="@styles/style.css" text="New Projects">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
             </Button>
             <Button fx:id="taskesmenubtn" mnemonicParsing="false" onAction="#HandlClick" prefHeight="50.0" prefWidth="270.0" styleClass="button1" stylesheets="@styles/style.css" text="Tasks">
                <font>
@@ -177,9 +185,9 @@
             <DropShadow height="18.03" radius="12.2225" width="32.86" />
          </effect>
       </VBox>
-      <StackPane layoutX="266.0" layoutY="243.0" prefHeight="442.0" prefWidth="802.0">
+      <StackPane layoutX="266.0" layoutY="243.0" prefHeight="444.0" prefWidth="802.0">
          <children>
-            <HBox fx:id="dashboard" prefHeight="350.0" prefWidth="780.0">
+            <HBox fx:id="dashboard" prefHeight="350.0" prefWidth="780.0" visible="false">
                <children>
                   <VBox alignment="CENTER" prefHeight="394.0" prefWidth="260.0" style="-fx-background-color: #474973; -fx-background-radius: 10;">
                      <children>
@@ -252,7 +260,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox fx:id="addproject" visible="false">
+            <HBox fx:id="addproject">
                <children>
                   <AnchorPane prefHeight="442.0" prefWidth="385.0">
                      <children>
@@ -285,7 +293,15 @@
                   </AnchorPane>
                   <VBox alignment="CENTER" prefHeight="442.0" prefWidth="377.0">
                      <children>
-                        <TextField prefHeight="41.0" prefWidth="279.0" promptText="Project ID" style="-fx-background-radius: 30px;">
+                        <Label fx:id="LabelOfPrj" alignment="CENTER" prefHeight="17.0" prefWidth="308.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="AddTitleprj" prefHeight="41.0" prefWidth="279.0" promptText="Project title" style="-fx-background-radius: 30px;">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -293,7 +309,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </TextField>
-                        <TextField prefHeight="41.0" prefWidth="279.0" promptText="Project title" style="-fx-background-radius: 30px;">
+                        <TextField fx:id="AddClientprj" prefHeight="41.0" prefWidth="279.0" promptText="Client" style="-fx-background-radius: 30px;">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -301,7 +317,23 @@
                               <Insets left="20.0" />
                            </padding>
                         </TextField>
-                        <DatePicker nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="273.0" style="-fx-background-radius: 15px; -fx-background-color: transparant;">
+                        <TextField fx:id="AddCategorieprj" prefHeight="41.0" prefWidth="279.0" promptText="Categorie" style="-fx-background-radius: 30px;">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="AddDescriptionprj" prefHeight="70.0" prefWidth="279.0" promptText="Description" style="-fx-background-radius: 30px;">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </TextField>
+                        <DatePicker fx:id="AddDBprj" nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="273.0" promptText="Date Debut" style="-fx-background-radius: 15px; -fx-background-color: transparant;">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -312,7 +344,7 @@
                               <Insets bottom="10.0" left="20.0" right="20.0" />
                            </VBox.margin>
                         </DatePicker>
-                        <DatePicker nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="273.0" style="-fx-background-radius: 15px; -fx-background-color: transparant;">
+                        <DatePicker fx:id="AddDFprj" nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="273.0" promptText="Date fin" style="-fx-background-radius: 15px; -fx-background-color: transparant;">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -323,23 +355,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </DatePicker>
-                        <TextField prefHeight="41.0" prefWidth="279.0" promptText="Client" style="-fx-background-radius: 30px;">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </TextField>
-                        <TextField prefHeight="70.0" prefWidth="279.0" promptText="Description" style="-fx-background-radius: 30px;">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </TextField>
-                        <Button id="Btn1" fx:id="Btn1" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #143399; -fx-background-radius: 20px;" text="Create project" textFill="WHITE">
+                        <Button id="Btn1" fx:id="newprjBtn" mnemonicParsing="false" onAction="#addproject" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #143399; -fx-background-radius: 20px;" text="Create project" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -355,17 +371,12 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="442.0" prefWidth="377.0">
                      <children>
+                        <TextField prefHeight="41.0" prefWidth="279.0" promptText="Title" style="-fx-background-radius: 30px;">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
                         <TextField prefHeight="41.0" prefWidth="279.0" promptText="Project ID" style="-fx-background-radius: 30px;">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField prefHeight="41.0" prefWidth="279.0" promptText="Team ID" style="-fx-background-radius: 30px;">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField prefHeight="41.0" prefWidth="279.0" promptText="Task name" style="-fx-background-radius: 30px;">
                            <VBox.margin>
                               <Insets bottom="10.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -451,228 +462,14 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <VBox fx:id="listeproject" prefHeight="200.0" prefWidth="100.0" visible="false">
-               <children>
-                  <HBox prefHeight="212.0" prefWidth="646.0">
-                     <children>
-                        <Pane prefHeight="167.0" prefWidth="150.0">
-                           <children>
-                              <ImageView fitHeight="211.0" fitWidth="150.0" layoutX="2.0" layoutY="5.0">
-                                 <image>
-                                    <Image url="@Assets/Cree.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" textFill="#fff1f100">
-                                 <effect>
-                                    <Shadow>
-                                       <color>
-                                          <Color opacity="0.0" />
-                                       </color>
-                                    </Shadow>
-                                 </effect>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Pane>
-                        <Pane prefHeight="167.0" prefWidth="150.0">
-                           <children>
-                              <ImageView fitHeight="211.0" fitWidth="150.0" layoutX="2.0" layoutY="5.0">
-                                 <image>
-                                    <Image url="@Assets/project.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" textFill="#fff1f100">
-                                 <effect>
-                                    <Shadow>
-                                       <color>
-                                          <Color opacity="0.0" />
-                                       </color>
-                                    </Shadow>
-                                 </effect>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Pane>
-                        <Pane prefHeight="167.0" prefWidth="150.0">
-                           <children>
-                              <ImageView fitHeight="211.0" fitWidth="150.0" layoutX="2.0" layoutY="5.0">
-                                 <image>
-                                    <Image url="@Assets/project.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" textFill="#fff1f100">
-                                 <effect>
-                                    <Shadow>
-                                       <color>
-                                          <Color opacity="0.0" />
-                                       </color>
-                                    </Shadow>
-                                 </effect>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Pane>
-                        <Pane prefHeight="167.0" prefWidth="150.0">
-                           <children>
-                              <ImageView fitHeight="211.0" fitWidth="150.0" layoutX="2.0" layoutY="5.0">
-                                 <image>
-                                    <Image url="@Assets/project.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" textFill="#fff1f100">
-                                 <effect>
-                                    <Shadow>
-                                       <color>
-                                          <Color opacity="0.0" />
-                                       </color>
-                                    </Shadow>
-                                 </effect>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Pane>
-                        <Pane prefHeight="167.0" prefWidth="150.0">
-                           <children>
-                              <ImageView fitHeight="211.0" fitWidth="150.0" layoutX="2.0" layoutY="5.0">
-                                 <image>
-                                    <Image url="@Assets/project.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" textFill="#fff1f100">
-                                 <effect>
-                                    <Shadow>
-                                       <color>
-                                          <Color opacity="0.0" />
-                                       </color>
-                                    </Shadow>
-                                 </effect>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Pane>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="212.0" prefWidth="646.0">
-                     <children>
-                        <Pane prefHeight="167.0" prefWidth="150.0">
-                           <children>
-                              <ImageView fitHeight="211.0" fitWidth="150.0" layoutX="2.0" layoutY="5.0">
-                                 <image>
-                                    <Image url="@Assets/project.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" textFill="#fff1f100">
-                                 <effect>
-                                    <Shadow>
-                                       <color>
-                                          <Color opacity="0.0" />
-                                       </color>
-                                    </Shadow>
-                                 </effect>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Pane>
-                        <Pane prefHeight="167.0" prefWidth="150.0">
-                           <children>
-                              <ImageView fitHeight="211.0" fitWidth="150.0" layoutX="2.0" layoutY="5.0">
-                                 <image>
-                                    <Image url="@Assets/project.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" textFill="#fff1f100">
-                                 <effect>
-                                    <Shadow>
-                                       <color>
-                                          <Color opacity="0.0" />
-                                       </color>
-                                    </Shadow>
-                                 </effect>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Pane>
-                        <Pane prefHeight="167.0" prefWidth="150.0">
-                           <children>
-                              <ImageView fitHeight="211.0" fitWidth="150.0" layoutX="2.0" layoutY="5.0">
-                                 <image>
-                                    <Image url="@Assets/project.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" textFill="#fff1f100">
-                                 <effect>
-                                    <Shadow>
-                                       <color>
-                                          <Color opacity="0.0" />
-                                       </color>
-                                    </Shadow>
-                                 </effect>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Pane>
-                        <Pane prefHeight="167.0" prefWidth="150.0">
-                           <children>
-                              <ImageView fitHeight="211.0" fitWidth="150.0" layoutX="2.0" layoutY="5.0">
-                                 <image>
-                                    <Image url="@Assets/project.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" textFill="#fff1f100">
-                                 <effect>
-                                    <Shadow>
-                                       <color>
-                                          <Color opacity="0.0" />
-                                       </color>
-                                    </Shadow>
-                                 </effect>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Pane>
-                        <Pane prefHeight="167.0" prefWidth="150.0">
-                           <children>
-                              <ImageView fitHeight="211.0" fitWidth="150.0" layoutX="2.0" layoutY="5.0">
-                                 <image>
-                                    <Image url="@Assets/more.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" textFill="#fff1f100">
-                                 <effect>
-                                    <Shadow>
-                                       <color>
-                                          <Color opacity="0.0" />
-                                       </color>
-                                    </Shadow>
-                                 </effect>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Pane>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+            <ScrollPane fx:id="listeproject" prefHeight="364.0" prefWidth="740.0" visible="false">
+               <content>
+                  <GridPane fx:id="projectGrid">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content></ScrollPane>
             <AnchorPane fx:id="SearchProject" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <Label id="idTitle" fx:id="idTitle3" layoutX="430.0" layoutY="3.0" prefHeight="53.0" prefWidth="122.0" text="team" textFill="#1d72f2">

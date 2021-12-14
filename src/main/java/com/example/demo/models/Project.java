@@ -23,6 +23,10 @@ public class Project {
     private String client;
     private int id_team;
 
+    public  Project(){
+
+    }
+
     public Project(int id_project, String title, String description, Date date_debut, Date date_fin, String statut, String client, int id_team) {
         this.id_project = id_project;
         this.title = title;
