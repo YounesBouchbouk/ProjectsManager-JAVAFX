@@ -260,7 +260,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox fx:id="addproject">
+            <HBox fx:id="addproject" visible="false">
                <children>
                   <AnchorPane prefHeight="442.0" prefWidth="385.0">
                      <children>
@@ -462,9 +462,9 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <ScrollPane fx:id="listeproject" prefHeight="364.0" prefWidth="740.0" visible="false">
+            <ScrollPane fx:id="listeproject" prefHeight="364.0" prefWidth="740.0" style="-fx-background-color: #ffffff;">
                <content>
-                  <GridPane fx:id="projectGrid">
+                  <GridPane fx:id="projectGrid" style="-fx-background-color: #ffffff;">
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>

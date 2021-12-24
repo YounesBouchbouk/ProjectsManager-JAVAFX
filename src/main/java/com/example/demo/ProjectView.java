@@ -1,6 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.Listeners.ProjectListener;
 import com.example.demo.models.Project;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,12 +19,25 @@ public class ProjectView {
     private Label PrjDateD;
 
     @FXML
-    private Button prjbtn;
+    private Label prjidlabel;
 
-    public void setData(Project p){
-        nbtaches.setText(String.valueOf(33));
+    private ProjectListener projectlistener;
+
+    private Project project;
+
+    @FXML
+    private  void click(ActionEvent actionEvent){
+        System.out.println("click click");
+        projectlistener.PrjOnclickListener(project);
+    }
+
+    public void setData(Project p , ProjectListener prj){
+        this.project=p;
+        this.projectlistener = prj;
+        nbtaches.setText(String.valueOf(15));
         PnameText.setText(p.getTitle());
         PrjDateD.setText(String.valueOf(p.getDate_debut()));
+        prjidlabel.setText(String.valueOf(p.getId_project()));
 
     }
 

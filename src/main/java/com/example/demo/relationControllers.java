@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.Listeners.ProjectListener;
 import com.example.demo.models.Project;
 import com.example.demo.models.UserSession;
 import com.example.demo.models.db;
@@ -28,6 +29,8 @@ public  class relationControllers implements Initializable {
     ResultSet resultSet = null;
     ResultSet userLogedin = null;
     Connection con = null;
+
+    private ProjectListener prjlisten;
 
     @FXML
     private Text sessionName;
@@ -94,8 +97,10 @@ public  class relationControllers implements Initializable {
     @FXML
     private TextField AddTitleprj;
 
+    //==========================================================Gridpane
     @FXML
-    private Button newprjBtn;
+    private  GridPane projectGrid;
+    private List<Project> posts =  new ArrayList<>();
 
     private void LabelOfPrjError(Color color, String text) {
         LabelOfPrj.setTextFill(color);
@@ -130,11 +135,9 @@ public  class relationControllers implements Initializable {
                     ResultSet rs = preparedStatement.getGeneratedKeys();
                     if(rs.next())
                         Idteam = rs.getInt(1);
-
                     if(Idteam != 0){
                         System.out.println("hanta ha id dial team jdide");
                         System.out.println(Idteam);
-
                         String participedQuery = "insert into javafx2.participed values(?,?,?,?,?)";
                         preparedStatement = con.prepareStatement(participedQuery , Statement.RETURN_GENERATED_KEYS);
                         preparedStatement.setString(1 , "Designer");
@@ -147,8 +150,7 @@ public  class relationControllers implements Initializable {
                         if(rows == 1)
                         {
                             System.out.println("participed nadia ");
-
-                            String projectQuery = "insert into javafx2.project values(NULL,?,?,?,?,?,?,?,?)";
+                            String projectQuery = "insert into javafx2.project values(NULL,?,?,?,?,?,?,?,?,?)";
                             preparedStatement = con.prepareStatement(projectQuery , Statement.RETURN_GENERATED_KEYS);
                             preparedStatement.setString(1,title);
                             preparedStatement.setString(2,Description);
@@ -158,6 +160,7 @@ public  class relationControllers implements Initializable {
                             preparedStatement.setString(6,Client);
                             preparedStatement.setString(7,Categorie);
                             preparedStatement.setInt(8,Idteam);
+                            preparedStatement.setInt(9,UserSession.instance.getID());
                             int rows2 = preparedStatement.executeUpdate();
                             if(rows2 !=0){
                                 System.out.println("Kolchi nadi");
@@ -167,14 +170,13 @@ public  class relationControllers implements Initializable {
                                     ProjectId = rs2.getInt(1);
                                 String Full = "Successful ..... ProjectId = " + ProjectId + " !" ;
                                 LabelOfPrjError(Color.GREEN , Full);
+                                fillout();
+                                System.out.println("hanhna drna reload");
                             }
-
                         }else{
                             System.out.println("mochkila f participed");
                             LabelOfPrjError(Color.RED , "Something went wrong ! ");
-
                         }
-
                     }else {
                         System.out.println("mochkila f id dial team jdide");
                         LabelOfPrjError(Color.RED , "Something went wrong ! ");
@@ -192,10 +194,7 @@ public  class relationControllers implements Initializable {
         }
     }
 
-    //==========================================================Gridpane
-    @FXML
-    private  GridPane projectGrid;
-    private List<Project> posts;
+
 
     public void HandlClick(ActionEvent event ){
 
@@ -260,14 +259,15 @@ public  class relationControllers implements Initializable {
         System.exit(0);
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    public  void fillout(){
 
         try {
-            posts = new ArrayList<>(data());
+
+            posts = data();
             int colums = 0;
             int rows = 1 ;
+
 
             for(int i = 0 ; i < posts.size() ; i++ ){
                 FXMLLoader projectview = new FXMLLoader();
@@ -276,7 +276,7 @@ public  class relationControllers implements Initializable {
                 Pane projectpane = projectview.load();
 
                 ProjectView prjv = projectview.getController();
-                prjv.setData(posts.get(i));
+                prjv.setData(posts.get(i),prjlisten);
 
                 if(colums == 3 ){
                     colums = 0;
@@ -295,51 +295,62 @@ public  class relationControllers implements Initializable {
         }
 
 
-        System.out.println("Ara hna");
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //sessiion configuration
+
         sessionName.setText(UserSession.instance.getUserName());
         sessionId.setText(String.valueOf(UserSession.instance.getID()));
+        System.out.println("Ara hna");
+
+        prjlisten = new ProjectListener() {
+            @Override
+            public void PrjOnclickListener(Project project) {
+                System.out.println(project.getTitle());
+            }
+        };
+
+        fillout();
 
     }
 
     public  List<Project> data() throws ParseException {
+        System.out.println("hani kangad fdata");
+        con = db.getConnection();
+        String participedQuery = "Select * from project where  idchef = ?";
+
         List<Project> ls = new ArrayList<>();
         Project p = new Project();
+        String sDate1;
+        Date date1;
 
-        String sDate1="31/12/1998";
-        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
 
-        p.setDate_debut(date1);
-        p.setTitle("the first prj ");
+        try {
+            preparedStatement = con.prepareStatement(participedQuery , Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1 , UserSession.instance.getID());
+            resultSet = preparedStatement.executeQuery();
 
-        ls.add(p);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getInt(10));
+                System.out.println("checki lblan ");
+                p= new Project();
+                System.out.println(String.valueOf(resultSet.getDate(4)));
+                //sDate1="31/12/2029";
+                sDate1= String.valueOf(resultSet.getDate(4));
+                date1=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
+                p.setDate_debut(date1);
+                p.setTitle(resultSet.getString(2));
+                p.setId_project(resultSet.getInt(1));
+                ls.add(p);
 
-        p = new Project();
-         sDate1="31/12/1998";
-         date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+            }
 
-        p.setDate_debut(date1);
-        p.setTitle("the first prj ");
-
-        ls.add(p);
-
-        p = new Project();
-        sDate1="31/12/1998";
-        date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-
-        p.setDate_debut(date1);
-        p.setTitle("the first prj ");
-
-        ls.add(p);
-
-        p = new Project();
-        sDate1="31/12/1998";
-        date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-
-        p.setDate_debut(date1);
-        p.setTitle("the first prj ");
-
-        ls.add(p);
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
         return ls ;
