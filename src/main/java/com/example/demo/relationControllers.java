@@ -5,15 +5,22 @@ import com.example.demo.models.Project;
 import com.example.demo.models.UserSession;
 import com.example.demo.models.db;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +36,31 @@ public  class relationControllers implements Initializable {
     ResultSet resultSet = null;
     ResultSet userLogedin = null;
     Connection con = null;
+
+    //project deaile anchore pane
+    @FXML
+    private AnchorPane detailanchorpane;
+    @FXML
+    private Label Dtchefprj;
+
+    @FXML
+    private Label DtprjId;
+
+    @FXML
+    private Label Dtprjdesc;
+
+    @FXML
+    private Label Dtprjtitle;
+
+    @FXML
+    private Label Dtrole;
+
+    @FXML
+    private Button indevBtnTaskes;
+
+
+    ///endes of it
+
 
     private ProjectListener prjlisten;
 
@@ -108,6 +140,10 @@ public  class relationControllers implements Initializable {
         System.out.println(text);
     }
 
+    //to open a new window of About_project
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     public void addproject(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US);
@@ -204,6 +240,7 @@ public  class relationControllers implements Initializable {
         SearchProject.setVisible(false);
         addTasks.setVisible(false);
         addproject.setVisible(false);
+        detailanchorpane.setVisible(false);
         listeproject.setVisible(false);
         dashboard.setVisible(true);
         dashboard.toFront();
@@ -213,6 +250,8 @@ public  class relationControllers implements Initializable {
         SearchProject.setVisible(false);
         addTasks.setVisible(false);
         addproject.setVisible(false);
+        detailanchorpane.setVisible(false);
+
         dashboard.setVisible(false);
         listeproject.setVisible(true);
         listeproject.toFront();
@@ -223,6 +262,7 @@ public  class relationControllers implements Initializable {
         addTasks.setVisible(false);
         addproject.setVisible(false);
         dashboard.setVisible(false);
+        detailanchorpane.setVisible(false);
         listeproject.setVisible(true);
         listeproject.toFront();
     } else if (taskesmenubtn.equals(source)) {
@@ -231,6 +271,7 @@ public  class relationControllers implements Initializable {
         addproject.setVisible(false);
         dashboard.setVisible(false);
         listeproject.setVisible(false);
+        detailanchorpane.setVisible(false);
         addTasks.setVisible(true);
         addTasks.toFront();
     } else if (teammenubtn.equals(source)) {
@@ -240,6 +281,7 @@ public  class relationControllers implements Initializable {
         dashboard.setVisible(false);
         listeproject.setVisible(false);
         addTasks.setVisible(false);
+        detailanchorpane.setVisible(false);
         SearchProject.setVisible(true);
         SearchProject.toFront();
     } else if (addprj.equals(source)) {
@@ -248,6 +290,7 @@ public  class relationControllers implements Initializable {
         dashboard.setVisible(false);
         listeproject.setVisible(false);
         addTasks.setVisible(false);
+        detailanchorpane.setVisible(false);
         addproject.setVisible(true);
         addproject.toFront();
     }
@@ -309,7 +352,51 @@ public  class relationControllers implements Initializable {
         prjlisten = new ProjectListener() {
             @Override
             public void PrjOnclickListener(Project project) {
-                System.out.println(project.getTitle());
+
+                System.out.println(project.getId_project());
+
+                pathfiletxt.setText("/dashboard/:idpoject="+ project.getId_project());
+
+                Dtchefprj.setText(String.valueOf(project.getId_chef()));
+                Dtprjtitle.setText(project.getTitle());
+                Dtprjdesc.setText(project.getDescription());
+                DtprjId.setText(String.valueOf(project.getId_project()));
+                Dtrole.setText("Mazal");
+
+                SearchProject.setVisible(false);
+                addTasks.setVisible(false);
+                addproject.setVisible(false);
+                detailanchorpane.setVisible(true);
+                listeproject.setVisible(false);
+                dashboard.setVisible(false);
+                detailanchorpane.toFront();
+
+                indevBtnTaskes.setOnMousePressed(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        System.out.println("Clicki 3lia Clicki 3lia");
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("taskestable.fxml"));
+                        Parent root1 = null;
+                        try {
+                            root1 = (Parent) fxmlLoader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        TaskesGest controller2 = fxmlLoader.getController();
+                        //TaskesGest.idproject = 12;
+                        controller2.setIdproject(project.getId_project());
+
+                        Stage stage = new Stage();
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.initStyle(StageStyle.UNDECORATED);
+                        //stage.setUserData(project);
+                        stage.setTitle("Taskes");
+                        stage.setScene(new Scene(root1));
+                        stage.show();
+                    }
+                });
+
             }
         };
 
@@ -344,6 +431,11 @@ public  class relationControllers implements Initializable {
                 p.setDate_debut(date1);
                 p.setTitle(resultSet.getString(2));
                 p.setId_project(resultSet.getInt(1));
+                p.setDescription(resultSet.getString(3));
+                sDate1= String.valueOf(resultSet.getDate(5));
+                date1=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
+                p.setDate_fin(date1);
+                p.setId_chef(resultSet.getInt(10));
                 ls.add(p);
 
             }

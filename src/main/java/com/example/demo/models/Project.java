@@ -22,6 +22,7 @@ public class Project {
    private String statut;
     private String client;
     private int id_team;
+    private  int id_chef;
 
     public  Project(){
 
@@ -70,7 +71,7 @@ public class Project {
     public void setId_team(int id_team) {
         this.id_team = id_team;
     }
-
+    public void setId_chef(int id){ this.id_chef = id ; }
     public int getId_project() {
         return id_project;
     }
@@ -78,6 +79,7 @@ public class Project {
     public String getTitle() {
         return title;
     }
+    public int getId_chef(){return id_chef ; }
 
     public String getDescription() {
         return description;
