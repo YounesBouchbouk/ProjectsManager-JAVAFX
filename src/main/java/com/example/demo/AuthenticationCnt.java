@@ -213,8 +213,10 @@ public class AuthenticationCnt implements Initializable {
 
         if(FirstName=="" || LastName=="" || Email=="" || DateNaiss=="" || password=="" || confirmpassword=="" ){
             Signuperror.setText("All fields Are required");
+            signioerror.setTextFill(Color.RED);
         }else if(!password.equals(confirmpassword)){
-            Signuperror.setText("PAsswords Not match");
+            Signuperror.setText("some thing wrong");
+            signioerror.setTextFill(Color.RED);
         }else{
             con = db.getConnection();
             String Query ="insert into javafx2.user values(NULL , ?  , ? , ? , ?, ? , ? , ? , 0 )";
@@ -223,9 +225,7 @@ public class AuthenticationCnt implements Initializable {
             System.out.println(Email);
             System.out.println(DateNaiss);
 
-
             try {
-
                 preparedStatement = con.prepareStatement(Query , Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setString(1, FirstName);
                 preparedStatement.setString(2, Email);

@@ -10,12 +10,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -28,8 +30,8 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
 import java.util.Date;
+import java.util.*;
 
 public  class relationControllers implements Initializable {
     PreparedStatement preparedStatement = null;
@@ -73,8 +75,6 @@ public  class relationControllers implements Initializable {
     @FXML
     private AnchorPane SearchProject;
 
-    @FXML
-    private HBox addTasks;
 
     @FXML
     private HBox addproject;
@@ -98,8 +98,7 @@ public  class relationControllers implements Initializable {
     @FXML
     private Button settingsmenubtn;
 
-    @FXML
-    private Button taskesmenubtn;
+
 
     @FXML
     private Button teammenubtn;
@@ -238,7 +237,6 @@ public  class relationControllers implements Initializable {
     if (dashboardmenubtn.equals(source)) {
         pathfiletxt.setText("/dashboard");
         SearchProject.setVisible(false);
-        addTasks.setVisible(false);
         addproject.setVisible(false);
         detailanchorpane.setVisible(false);
         listeproject.setVisible(false);
@@ -248,10 +246,8 @@ public  class relationControllers implements Initializable {
     } else if (projectlistebtn.equals(source)) {
         pathfiletxt.setText("/dashboard/My project");
         SearchProject.setVisible(false);
-        addTasks.setVisible(false);
         addproject.setVisible(false);
         detailanchorpane.setVisible(false);
-
         dashboard.setVisible(false);
         listeproject.setVisible(true);
         listeproject.toFront();
@@ -259,28 +255,17 @@ public  class relationControllers implements Initializable {
     } else if (settingsmenubtn.equals(source)) {
         pathfiletxt.setText("/dashboard/user/Setting");
         SearchProject.setVisible(false);
-        addTasks.setVisible(false);
         addproject.setVisible(false);
         dashboard.setVisible(false);
         detailanchorpane.setVisible(false);
         listeproject.setVisible(true);
         listeproject.toFront();
-    } else if (taskesmenubtn.equals(source)) {
-        pathfiletxt.setText("/dashboard/project/Addtask");
-        SearchProject.setVisible(false);
-        addproject.setVisible(false);
-        dashboard.setVisible(false);
-        listeproject.setVisible(false);
-        detailanchorpane.setVisible(false);
-        addTasks.setVisible(true);
-        addTasks.toFront();
-    } else if (teammenubtn.equals(source)) {
+    }else if (teammenubtn.equals(source)) {
         pathfiletxt.setText("/dashboard/project/Jointeam");
 
         addproject.setVisible(false);
         dashboard.setVisible(false);
         listeproject.setVisible(false);
-        addTasks.setVisible(false);
         detailanchorpane.setVisible(false);
         SearchProject.setVisible(true);
         SearchProject.toFront();
@@ -289,7 +274,6 @@ public  class relationControllers implements Initializable {
         SearchProject.setVisible(false);
         dashboard.setVisible(false);
         listeproject.setVisible(false);
-        addTasks.setVisible(false);
         detailanchorpane.setVisible(false);
         addproject.setVisible(true);
         addproject.toFront();
@@ -364,7 +348,6 @@ public  class relationControllers implements Initializable {
                 Dtrole.setText("Mazal");
 
                 SearchProject.setVisible(false);
-                addTasks.setVisible(false);
                 addproject.setVisible(false);
                 detailanchorpane.setVisible(true);
                 listeproject.setVisible(false);
@@ -386,6 +369,7 @@ public  class relationControllers implements Initializable {
                         TaskesGest controller2 = fxmlLoader.getController();
                         //TaskesGest.idproject = 12;
                         controller2.setIdproject(project.getId_project());
+                        controller2.setTitleprj(project.getTitle());
 
                         Stage stage = new Stage();
                         stage.initModality(Modality.APPLICATION_MODAL);
@@ -407,7 +391,7 @@ public  class relationControllers implements Initializable {
     public  List<Project> data() throws ParseException {
         System.out.println("hani kangad fdata");
         con = db.getConnection();
-        String participedQuery = "Select * from project where  idchef = ?";
+        String participedQuery = "select * from project  join participed where project.idTeam = participed.Team_idTeam and participed.userid = ?";
 
         List<Project> ls = new ArrayList<>();
         Project p = new Project();

@@ -1,18 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="taskespan" prefHeight="464.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.TaskesGest">
+<AnchorPane fx:id="taskespan" prefHeight="577.0" prefWidth="978.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.TaskesGest">
    <children>
-      <TableView layoutX="11.0" layoutY="81.0" prefHeight="352.0" prefWidth="754.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
-      <Label fx:id="idlabel" layoutX="301.0" layoutY="36.0" text="Label" />
+      <VBox alignment="CENTER" layoutY="4.0" prefHeight="577.0" prefWidth="186.0" style="-fx-background-color: #E9EAE9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="tabeleviewaff" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlchangeview" prefHeight="39.0" prefWidth="185.0" styleClass="button1" stylesheets="@styles/style.css" text="TABLE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
+            <Button fx:id="newtaskbtn" mnemonicParsing="false" onAction="#handlchangeview" prefHeight="39.0" prefWidth="186.0" styleClass="button1" stylesheets="@styles/style.css" text="NEW TASK">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
+            <Button fx:id="close_tache" layoutX="10.0" layoutY="42.0" mnemonicParsing="false" onAction="#closeapp" prefHeight="39.0" prefWidth="186.0" styleClass="button1" stylesheets="@styles/style.css" text="CLOSE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+               <effect>
+                  <InnerShadow height="0.48" radius="0.47250000000000003" width="3.41">
+                     <color>
+                        <Color red="0.9473684430122375" green="0.12719298899173737" blue="0.12719298899173737" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </VBox>
+      <StackPane layoutX="192.0" layoutY="39.0">
+         <children>
+            <VBox fx:id="tablevbox">
+               <children>
+                  <Label fx:id="errorlabel" alignment="CENTER" prefHeight="30.0" prefWidth="980.0" textFill="#ff0808">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label fx:id="idlabel" text="Label">
+                           <HBox.margin>
+                              <Insets right="200.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="titlelabel" text="Label">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="43.0" prefWidth="754.0">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <Button fx:id="btnAll" mnemonicParsing="false" onAction="#handlequery" prefHeight="30.0" prefWidth="120.0" styleClass="button2" stylesheets="@styles/style.css" text="ALL" textAlignment="CENTER" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="110.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btnA" layoutX="57.0" layoutY="17.0" mnemonicParsing="false" onAction="#handlequery" prefHeight="30.0" prefWidth="120.0" styleClass="button2" stylesheets="@styles/style.css" text="NEW" textAlignment="CENTER" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <HBox.margin>
+                              <Insets right="110.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnP" mnemonicParsing="false" onAction="#handlequery" prefHeight="30.0" prefWidth="120.0" styleClass="button2" stylesheets="@styles/style.css" text="PADDING" textAlignment="CENTER" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="110.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btnD" mnemonicParsing="false" onAction="#handlequery" prefHeight="30.0" prefWidth="120.0" styleClass="button2" stylesheets="@styles/style.css" text="DONE" textAlignment="CENTER" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tachetabel" prefHeight="331.0" prefWidth="861.0" stylesheets="@styles/tablestyle.css">
+                    <columns>
+                      <TableColumn fx:id="idcol" prefWidth="50.0" text="ID" />
+                      <TableColumn fx:id="titlecol" prefWidth="135.0" text="Title" />
+                        <TableColumn fx:id="desccol" prefWidth="183.0" text="Desc" />
+                        <TableColumn fx:id="datedcol" prefWidth="98.0" text="Debut" />
+                        <TableColumn fx:id="datefcol" prefWidth="109.0" text="Fin" />
+                        <TableColumn fx:id="statuscol" prefWidth="63.0" text="Etat" />
+                        <TableColumn fx:id="ActionCol" prefWidth="137.0" text="Action" />
+                    </columns>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <cursor>
+                        <Cursor fx:constant="DISAPPEAR" />
+                     </cursor>
+                  </TableView>
+               </children>
+            </VBox>
+            <HBox fx:id="asignetaskhbox" visible="false">
+               <children>
+                  <AnchorPane prefHeight="442.0" prefWidth="427.0">
+                     <children>
+                        <Label id="idTitle" fx:id="idTitle2" layoutX="122.0" layoutY="24.0" prefHeight="47.0" prefWidth="72.0" text="Create " textFill="#1d72f2">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label id="idTitle" fx:id="idTitle12" layoutX="194.0" layoutY="24.0" prefHeight="47.0" prefWidth="176.0" text="Tasks , with  ">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label id="idTitle" fx:id="idTitle112" layoutX="194.0" layoutY="63.0" prefHeight="47.0" prefWidth="133.0" text=" distribute !">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label id="idTitle" fx:id="idTitle1111" layoutX="111.0" layoutY="63.0" prefHeight="47.0" prefWidth="95.0" text="  Easily " textFill="#3ae153">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="493.0" fitWidth="266.0" layoutX="75.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/—Pngtree—overtime%20stay%20up%20to%20time_3148409.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <VBox alignment="CENTER" prefHeight="442.0" prefWidth="377.0">
+                     <children>
+                        <Label fx:id="tachesucsesslabel" textFill="#ff0505" />
+                        <TextField fx:id="tache_title" prefHeight="41.0" prefWidth="279.0" promptText="Title" style="-fx-background-radius: 30px;">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="tache_project_id" editable="false" prefHeight="41.0" prefWidth="279.0" promptText="Project ID" style="-fx-background-radius: 30px;">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="tache_description" prefHeight="70.0" prefWidth="279.0" promptText="Description" style="-fx-background-radius: 30px;">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <DatePicker fx:id="startdate" nodeOrientation="LEFT_TO_RIGHT" prefHeight="47.0" prefWidth="273.0" promptText="Starts on" style="-fx-background-radius: 15px; -fx-background-color: Transparant;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                        <DatePicker fx:id="enddate" nodeOrientation="LEFT_TO_RIGHT" prefHeight="47.0" prefWidth="273.0" promptText="End the" style="-fx-background-radius: 15px; -fx-background-color: transparant;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                        <Label prefHeight="21.0" prefWidth="373.0" text="Assign task to :">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="spiinerusers" prefHeight="41.0" prefWidth="262.0" style="-fx-background-color: #edf2f4; -fx-background-radius: 20px;">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </ChoiceBox>
+                        <Button id="Btn1" fx:id="createnewtastk" mnemonicParsing="false" onAction="#addnewtask" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #143399; -fx-background-radius: 20px;" text="Create Task" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

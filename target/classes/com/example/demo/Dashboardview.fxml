@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -158,14 +157,6 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="taskesmenubtn" mnemonicParsing="false" onAction="#HandlClick" prefHeight="50.0" prefWidth="270.0" styleClass="button1" stylesheets="@styles/style.css" text="Tasks">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="8.0" />
-               </VBox.margin>
-            </Button>
             <Button fx:id="teammenubtn" mnemonicParsing="false" onAction="#HandlClick" prefHeight="50.0" prefWidth="270.0" styleClass="button1" stylesheets="@styles/style.css" text="Teams">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -189,7 +180,7 @@
       </VBox>
       <StackPane layoutX="266.0" layoutY="243.0" prefHeight="444.0" prefWidth="802.0">
          <children>
-            <AnchorPane fx:id="detailanchorpane" prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane fx:id="detailanchorpane" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <ImageView fitHeight="361.0" fitWidth="363.0" layoutX="31.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="70.0">
                      <image>
@@ -324,7 +315,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <HBox fx:id="dashboard" prefHeight="350.0" prefWidth="780.0" visible="false">
+            <HBox fx:id="dashboard" prefHeight="350.0" prefWidth="780.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="394.0" prefWidth="260.0" style="-fx-background-color: #474973; -fx-background-radius: 10;">
                      <children>
@@ -502,101 +493,6 @@
                         </Button>
                      </children>
                   </VBox>
-               </children>
-            </HBox>
-            <HBox fx:id="addTasks" layoutX="10.0" layoutY="10.0" visible="false">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="442.0" prefWidth="377.0">
-                     <children>
-                        <TextField prefHeight="41.0" prefWidth="279.0" promptText="Title" style="-fx-background-radius: 30px;">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField prefHeight="41.0" prefWidth="279.0" promptText="Project ID" style="-fx-background-radius: 30px;">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <TextField prefHeight="70.0" prefWidth="279.0" promptText="Description" style="-fx-background-radius: 30px;">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <DatePicker nodeOrientation="LEFT_TO_RIGHT" prefHeight="47.0" prefWidth="273.0" promptText="Starts on" style="-fx-background-radius: 15px; -fx-background-color: Transparant;">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </DatePicker>
-                        <DatePicker nodeOrientation="LEFT_TO_RIGHT" prefHeight="47.0" prefWidth="273.0" promptText="End the" style="-fx-background-radius: 15px; -fx-background-color: transparant;">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </DatePicker>
-                        <Label prefHeight="21.0" prefWidth="373.0" text="Assign task to :">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </Label>
-                        <ChoiceBox prefHeight="41.0" prefWidth="262.0" style="-fx-background-color: #edf2f4; -fx-background-radius: 20px;">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </ChoiceBox>
-                        <Button id="Btn1" fx:id="Btn11" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #143399; -fx-background-radius: 20px;" text="Create Task" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <AnchorPane prefHeight="442.0" prefWidth="427.0">
-                     <children>
-                        <Label id="idTitle" fx:id="idTitle2" layoutX="122.0" layoutY="24.0" prefHeight="47.0" prefWidth="72.0" text="Create " textFill="#1d72f2">
-                           <font>
-                              <Font name="System Bold" size="21.0" />
-                           </font>
-                        </Label>
-                        <Label id="idTitle" fx:id="idTitle12" layoutX="194.0" layoutY="24.0" prefHeight="47.0" prefWidth="176.0" text="Tasks , with  ">
-                           <font>
-                              <Font name="System Bold" size="21.0" />
-                           </font>
-                        </Label>
-                        <Label id="idTitle" fx:id="idTitle112" layoutX="194.0" layoutY="63.0" prefHeight="47.0" prefWidth="133.0" text=" distribute !">
-                           <font>
-                              <Font name="System Bold" size="21.0" />
-                           </font>
-                        </Label>
-                        <Label id="idTitle" fx:id="idTitle1111" layoutX="111.0" layoutY="63.0" prefHeight="47.0" prefWidth="95.0" text="  Easily " textFill="#3ae153">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="493.0" fitWidth="266.0" layoutX="75.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Assets/—Pngtree—overtime%20stay%20up%20to%20time_3148409.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
                </children>
             </HBox>
             <ScrollPane fx:id="listeproject" prefHeight="364.0" prefWidth="740.0" style="-fx-background-color: #ffffff;" visible="false">
