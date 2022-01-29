@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -35,6 +36,7 @@ public class TaskesGest implements Initializable {
     PreparedStatement listepreparedStatement = null;
     ResultSet resultSet = null;
     Connection con = null;
+
 
 
     @FXML
@@ -138,7 +140,6 @@ public class TaskesGest implements Initializable {
     public void addnewtask() throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US);
 
-        tache_project_id.setText(String.valueOf(idproject));
 
 
         String t_title = tache_title.getText();
@@ -166,7 +167,7 @@ public class TaskesGest implements Initializable {
         preparedStatement.setString(5, "A");
         preparedStatement.setInt(6, idofusers.get(index));
         preparedStatement.setInt(7, idproject);
-
+        preparedStatement.execute();
         tachesucsesslabel.setTextFill(Color.GREEN);
         tachesucsesslabel.setText("Add Successful ........... ");
 
@@ -199,7 +200,6 @@ public class TaskesGest implements Initializable {
             listepreparedStatement.setInt(2, idproject);
             listepreparedStatement.setString(3, cara);
         }
-
 
         refreshTable();
     }
@@ -273,9 +273,9 @@ public class TaskesGest implements Initializable {
     }
 
     private class ButtonCell extends TableCell<Tache, Boolean> {
-        Image imgEdit = new Image(getClass().getResourceAsStream("/com/example/demo/Assets/login.png"), 20, 20, false, false);
+        Image imgEdit = new Image(getClass().getResourceAsStream("/com/example/demo/Assets/doing.png"), 70, 20, false, false);
         final Button cellButton1 = new Button();
-        Image imgDeete = new Image(getClass().getResourceAsStream("/com/example/demo/Assets/login.png"), 20, 20, false, false);
+        Image imgDeete = new Image(getClass().getResourceAsStream("/com/example/demo/Assets/done.png"), 70, 20, false, false);
         final Button deleteButton = new Button();
 
         ButtonCell(final TableView tblView){
@@ -360,6 +360,8 @@ public class TaskesGest implements Initializable {
         Object source = event.getSource();
 
         if(newtaskbtn.equals(source)){
+            tache_project_id.setText(String.valueOf(idproject));
+
             try {
                 preparedStatement = con.prepareStatement(checkquery, Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setInt(1, idproject);
@@ -395,6 +397,9 @@ public class TaskesGest implements Initializable {
     }
 
     public void asignuserstochoicebox() throws SQLException {
+        namesofusers.clear();
+        idofusers.clear();
+        spiinerusers.getItems().clear();
         con = db.getConnection();
         String usersquery = "select Full_Name , idUtilisateur from user u join (select userid " +
                 "from project join participed " +

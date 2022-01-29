@@ -230,6 +230,92 @@ public  class relationControllers implements Initializable {
     }
 
 
+    //Search Declaration :
+
+    @FXML
+    private Label Search_Desc_label;
+
+    @FXML
+    private Label Search_ED_label;
+
+    @FXML
+    private Label Search_SD_label;
+
+    @FXML
+    private Label Search_Team_label;
+
+    @FXML
+    private Button Search_and_join_btn;
+
+    @FXML
+    private TextField Search_idprj;
+
+    @FXML
+    private Label Search_title_label;
+
+    @FXML
+    private Button Serch_btn;
+
+    int seachedteamid = -1;
+
+    //end search declarion
+
+    public void HandleSearchProject() throws SQLException {
+
+
+        //int groupid = Integer.getInteger(Search_idprj.getText());
+        String theprojectid = Search_idprj.getText();
+        System.out.println(theprojectid);
+        int idprjass;
+        idprjass = Integer.valueOf(theprojectid);
+        String  Searchquery = "select * from project where idProjet = ?";
+        con = db.getConnection();
+
+        preparedStatement = con.prepareStatement(Searchquery, Statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setInt(1, idprjass);
+        resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()){
+            Search_title_label.setText(resultSet.getString(2));
+            Search_Desc_label.setText(resultSet.getString(3));
+            Search_SD_label.setText(resultSet.getString(4));
+            Search_ED_label.setText(resultSet.getString(5));
+            Search_Team_label.setText(resultSet.getString(9));
+            seachedteamid = resultSet.getInt(9);
+        }
+
+        Search_and_join_btn.setVisible(true);
+
+        Search_and_join_btn.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String addtoparticiped = "INSERT INTO participed VALUES(?,?,?,?,?)";
+                con = db.getConnection();
+                try {
+                    preparedStatement = con.prepareStatement(addtoparticiped, Statement.RETURN_GENERATED_KEYS);
+                    preparedStatement.setString(1, "Developer");
+                    preparedStatement.setString(2, "A");
+                    preparedStatement.setInt(3, 0);
+                    preparedStatement.setInt(4, seachedteamid);
+                    preparedStatement.setInt(5,UserSession.instance.getID());
+
+                    preparedStatement.executeUpdate();
+                    fillout();
+
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+    }
+
+
+
+
 
     public void HandlClick(ActionEvent event ){
 

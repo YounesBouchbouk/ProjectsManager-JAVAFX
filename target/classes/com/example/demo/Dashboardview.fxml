@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +18,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -315,7 +313,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <HBox fx:id="dashboard" prefHeight="350.0" prefWidth="780.0">
+            <HBox fx:id="dashboard" prefHeight="350.0" prefWidth="780.0" visible="false">
                <children>
                   <VBox alignment="CENTER" prefHeight="394.0" prefWidth="260.0" style="-fx-background-color: #474973; -fx-background-radius: 10;">
                      <children>
@@ -503,45 +501,126 @@
                     </rowConstraints>
                   </GridPane>
                </content></ScrollPane>
-            <AnchorPane fx:id="SearchProject" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <AnchorPane fx:id="SearchProject" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Label id="idTitle" fx:id="idTitle3" layoutX="430.0" layoutY="3.0" prefHeight="53.0" prefWidth="122.0" text="team" textFill="#1d72f2">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Button id="Btn1" fx:id="Btn12" layoutX="338.0" layoutY="393.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #143399; -fx-background-radius: 20px;" text="Join the project" textFill="WHITE">
+                  <Button id="Btn1" fx:id="Search_and_join_btn" layoutX="338.0" layoutY="393.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #143399; -fx-background-radius: 20px;" text="Join the project" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <TextField layoutX="188.0" layoutY="83.0" prefHeight="41.0" prefWidth="301.0" promptText="Enter project code" style="-fx-background-radius: 30px;" />
+                  <TextField fx:id="Search_idprj" layoutX="188.0" layoutY="83.0" prefHeight="41.0" prefWidth="301.0" promptText="Enter project code" style="-fx-background-radius: 30px;" />
                   <Label id="idTitle" fx:id="idTitle13" layoutX="260.0" layoutY="3.0" prefHeight="47.0" prefWidth="176.0" text="Join your">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Button id="Btn1" fx:id="Btn111" layoutX="578.0" layoutY="84.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" styleClass="button2" stylesheets="@styles/style.css" text="Search" textFill="WHITE">
+                  <Button id="Btn1" fx:id="Serch_btn" layoutX="578.0" layoutY="84.0" mnemonicParsing="false" onAction="#HandleSearchProject" prefHeight="35.0" prefWidth="100.0" styleClass="button2" stylesheets="@styles/style.css" text="Search" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Pane layoutX="333.0" layoutY="158.0" prefHeight="212.0" prefWidth="150.0">
+                  <Pane layoutX="147.0" layoutY="144.0" prefHeight="237.0" prefWidth="802.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <ImageView fitHeight="211.0" fitWidth="150.0" layoutY="1.0">
-                           <image>
-                              <Image url="@Assets/project.png" />
-                           </image>
-                        </ImageView>
-                        <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" textFill="#fff1f100">
-                           <effect>
-                              <Shadow>
-                                 <color>
-                                    <Color opacity="0.0" />
-                                 </color>
-                              </Shadow>
-                           </effect>
-                        </Button>
+                        <HBox alignment="CENTER" prefHeight="233.0" prefWidth="802.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="233.0" prefWidth="163.0">
+                                 <children>
+                                    <Label text="Title : ">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Description : ">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Start Date : ">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="End Date : ">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Team Id : ">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="60.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" layoutX="300.0" layoutY="10.0" prefHeight="233.0" prefWidth="163.0">
+                                 <children>
+                                    <Label fx:id="Search_title_label">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="Search_Desc_label">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="Search_SD_label">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="Search_ED_label">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="Search_Team_label">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
                      </children>
                   </Pane>
                </children>
