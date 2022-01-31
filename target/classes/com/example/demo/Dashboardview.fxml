@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -22,7 +23,7 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="706.0" prefWidth="1101.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.relationControllers">
-    <children>
+   <children>
       <Text fx:id="pathfiletxt" layoutX="301.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;Dashbord" wrappingWidth="525.9831027984619">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -31,12 +32,12 @@
          <children>
             <Pane layoutX="-8.0" prefHeight="202.0" prefWidth="870.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <Text layoutX="41.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des projets" wrappingWidth="217.9831027984619">
+                  <Text layoutX="41.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Projects manager" wrappingWidth="217.9831027984619">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="63.0" layoutY="128.0" prefHeight="40.0" prefWidth="266.0" promptText="Type here to search" style="-fx-border-radius: 70; -fx-background-radius: 70;" styleClass="transparent">
+                  <TextField fx:id="s2searchFields" layoutX="63.0" layoutY="128.0" prefHeight="40.0" prefWidth="266.0" promptText="Type here to search" style="-fx-border-radius: 70; -fx-background-radius: 70;" styleClass="transparent">
                      <font>
                         <Font name="Cambria" size="14.0" />
                      </font>
@@ -44,20 +45,20 @@
                         <Insets left="50.0" />
                      </padding>
                   </TextField>
-                  <Button layoutX="352.0" layoutY="128.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="button2" stylesheets="@styles/style.css" text="Search" textFill="WHITE">
+                  <Button fx:id="topbarbtn" layoutX="352.0" layoutY="128.0" mnemonicParsing="false" onAction="#HandleSearchProject" prefHeight="40.0" prefWidth="100.0" styleClass="button2" stylesheets="@styles/style.css" text="Search" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font></Button>
-                  <Button layoutX="740.0" layoutY="53.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" styleClass="button2" stylesheets="@styles/style.css" text="Deconnexion" textFill="WHITE">
+                  <Button layoutX="740.0" layoutY="53.0" mnemonicParsing="false" onAction="#CloseApp" prefHeight="27.0" prefWidth="100.0" styleClass="button2" stylesheets="@styles/style.css" text="Logout" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font></Button>
-                  <Label layoutX="686.0" layoutY="138.0" text="14 Septempre 2021">
+                  <Label fx:id="label2" layoutX="686.0" layoutY="138.0" text="14 Septempre 2021">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="697.0" layoutY="86.0" prefHeight="53.0" prefWidth="133.0" text="19:30">
+                  <Label fx:id="label1" alignment="CENTER" contentDisplay="CENTER" layoutX="697.0" layoutY="86.0" prefHeight="53.0" prefWidth="133.0" text="19:30">
                      <font>
                         <Font name="System Bold" size="43.0" />
                      </font>
@@ -72,16 +73,6 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="40.0" fitWidth="38.0" layoutX="559.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Assets/icons8-message-64.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="30.0" fitWidth="38.0" layoutX="616.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Assets/icons8-bell-24.png" />
-                     </image>
-                  </ImageView>
                   <HBox alignment="TOP_RIGHT" layoutX="664.0" layoutY="5.0" prefHeight="30.0" prefWidth="176.0">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="62.0" styleClass="button1" stylesheets="@styles/style.css" text="-">
@@ -313,79 +304,6 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <HBox fx:id="dashboard" prefHeight="350.0" prefWidth="780.0" visible="false">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="394.0" prefWidth="260.0" style="-fx-background-color: #474973; -fx-background-radius: 10;">
-                     <children>
-                        <ImageView fitHeight="103.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Assets/icons8-task-64%20(1).png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets bottom="50.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="261.0" styleClass="tachebtn" stylesheets="@styles/style.css" text="Tache a faires" textAlignment="CENTER">
-                           <font>
-                              <Font size="21.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <HBox.margin>
-                        <Insets bottom="20.0" right="5.0" top="20.0" />
-                     </HBox.margin>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="394.0" prefWidth="260.0" style="-fx-background-color: #474973; -fx-background-radius: 10;">
-                     <children>
-                        <ImageView fitHeight="103.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Assets/icons8-task-50.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets bottom="50.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="261.0" styleClass="tachebtn" stylesheets="@styles/style.css" text="Tache en cours">
-                           <font>
-                              <Font size="21.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <HBox.margin>
-                        <Insets bottom="20.0" right="5.0" top="20.0" />
-                     </HBox.margin>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="394.0" prefWidth="260.0" style="-fx-background-color: #474973; -fx-background-radius: 10;">
-                     <children>
-                        <ImageView fitHeight="103.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Assets/icons8-task-completed-50.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets bottom="50.0" />
-                           </VBox.margin>
-                        </ImageView>
-                        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="261.0" styleClass="tachebtn" stylesheets="@styles/style.css" text="Tache Terminee">
-                           <font>
-                              <Font size="21.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                     <HBox.margin>
-                        <Insets bottom="20.0" right="5.0" top="20.0" />
-                     </HBox.margin>
-                  </VBox>
-               </children>
-            </HBox>
             <HBox fx:id="addproject" visible="false">
                <children>
                   <AnchorPane prefHeight="442.0" prefWidth="385.0">
@@ -496,12 +414,12 @@
             <ScrollPane fx:id="listeproject" prefHeight="364.0" prefWidth="740.0" style="-fx-background-color: #ffffff;" visible="false">
                <content>
                   <GridPane fx:id="projectGrid" style="-fx-background-color: #ffffff;">
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                   </GridPane>
                </content></ScrollPane>
-            <AnchorPane fx:id="SearchProject" prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane fx:id="SearchProject" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <Label id="idTitle" fx:id="idTitle3" layoutX="430.0" layoutY="3.0" prefHeight="53.0" prefWidth="122.0" text="team" textFill="#1d72f2">
                      <font>
@@ -617,6 +535,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
+
                                  </children>
                               </VBox>
                            </children>
@@ -625,7 +544,494 @@
                   </Pane>
                </children>
             </AnchorPane>
+            <VBox fx:id="dashboard">
+               <children>
+                  <HBox fx:id="dashboard2" alignment="CENTER" prefHeight="204.0" prefWidth="802.0">
+                     <children>
+                        <Pane prefHeight="241.0" prefWidth="176.0" style="-fx-background-color: #E9EAE9;" styleClass="pane_1" stylesheets="@../../../../../../../../../Documents/ProjectsManager-JAVAFX/src/main/resources/com/example/demo/styles/style.css">
+                           <children>
+                              <Text layoutX="38.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Projects" wrappingWidth="100.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text id="idp" fx:id="l1" layoutX="35.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="106.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="48.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="100.0" />
+                           </HBox.margin>
+                        </Pane>
+                        <Pane prefHeight="341.0" prefWidth="176.0" style="-fx-background-color: #E9EAE9;" styleClass="pane_1" stylesheets="@../../../../../../../../../Documents/ProjectsManager-JAVAFX/src/main/resources/com/example/demo/styles/style.css">
+                           <children>
+                              <Text layoutX="38.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Tasks" textAlignment="CENTER" wrappingWidth="100.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text id="idtask" fx:id="nbtask_label1" layoutX="35.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="106.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="48.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="100.0" />
+                           </HBox.margin>
+                        </Pane>
+                        <Pane prefHeight="241.0" prefWidth="176.0" style="-fx-background-color: #E9EAE9;" styleClass="pane_1" stylesheets="@../../../../../../../../../Documents/ProjectsManager-JAVAFX/src/main/resources/com/example/demo/styles/style.css">
+                           <children>
+                              <Text layoutX="38.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My teams" textAlignment="CENTER" wrappingWidth="100.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text id="idteam" fx:id="l3" layoutX="35.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="106.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="48.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="dashboard21" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="204.0" prefWidth="802.0">
+                     <children>
+                        <Pane prefHeight="241.0" prefWidth="176.0" style="-fx-background-color: #E9EAE9;" styleClass="pane_1" stylesheets="@../../../../../../../../../Documents/ProjectsManager-JAVAFX/src/main/resources/com/example/demo/styles/style.css">
+                           <children>
+                              <Text layoutX="38.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NEW" textAlignment="CENTER" wrappingWidth="100.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text id="idp" fx:id="nb_new_taskes" layoutX="35.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="106.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="48.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="100.0" />
+                           </HBox.margin>
+                        </Pane>
+                        <Pane prefHeight="341.0" prefWidth="176.0" style="-fx-background-color: #E9EAE9;" styleClass="pane_1" stylesheets="@../../../../../../../../../Documents/ProjectsManager-JAVAFX/src/main/resources/com/example/demo/styles/style.css">
+                           <children>
+                              <Text layoutX="38.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TODO" textAlignment="CENTER" wrappingWidth="100.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text id="idtask" fx:id="nb_todo_taskes" layoutX="35.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="106.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="48.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="100.0" />
+                           </HBox.margin>
+                        </Pane>
+                        <Pane prefHeight="241.0" prefWidth="176.0" style="-fx-background-color: #E9EAE9;" styleClass="pane_1" stylesheets="@../../../../../../../../../Documents/ProjectsManager-JAVAFX/src/main/resources/com/example/demo/styles/style.css">
+                           <children>
+                              <Text layoutX="38.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DONE" textAlignment="CENTER" wrappingWidth="100.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text id="idteam" fx:id="nb_done_taskes" layoutX="35.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="106.00000000000011">
+                                 <font>
+                                    <Font name="System Bold" size="48.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <StackPane.margin>
+                  <Insets top="20.0" />
+               </StackPane.margin>
+            </VBox>
+            <Pane fx:id="settings" prefHeight="706.0" prefWidth="1101.0" style="-fx-background-color: #ffffff;" visible="false">
+               <children>
+                  <StackPane layoutY="14.0" prefHeight="444.0" prefWidth="802.0">
+                     <children>
+                        <AnchorPane fx:id="detailanchorpane1" prefHeight="200.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <ImageView fitHeight="361.0" fitWidth="363.0" layoutX="31.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="70.0">
+                                 <image>
+                                    <Image url="@Assets/—Pngtree—overtime%20stay%20up%20to%20time_3148409.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="CENTER" layoutX="366.0" layoutY="4.0" prefHeight="438.0" prefWidth="433.0" style="-fx-background-color: #E9EAE9;">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="38.0" prefWidth="361.0">
+                                       <children>
+                                          <Label text="Project Id  : ">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets right="80.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="DtprjId1" text="11">
+                                             <font>
+                                                <Font size="21.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="121.0" prefHeight="38.0" prefWidth="361.0">
+                                       <children>
+                                          <Label text="Title : ">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets right="80.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="Dtprjtitle1" text="11">
+                                             <font>
+                                                <Font size="21.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="38.0" prefWidth="361.0">
+                                       <children>
+                                          <Label prefHeight="32.0" prefWidth="156.0" text="Description :">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets right="80.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="Dtprjdesc1" prefHeight="31.0" prefWidth="127.0" text="11">
+                                             <font>
+                                                <Font size="21.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="38.0" prefWidth="361.0">
+                                       <children>
+                                          <Label text="Chef project : ">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets right="80.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="Dtchefprj1" text="11">
+                                             <font>
+                                                <Font size="21.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="38.0" prefWidth="361.0">
+                                       <children>
+                                          <Label text="Role : ">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets right="80.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="Dtrole1" text="11">
+                                             <font>
+                                                <Font size="21.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Button fx:id="indevBtnTaskes1" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="button2" stylesheets="@styles/style.css" text="My Taskes" textFill="WHITE">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button fx:id="TskesForAdmin1" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="button2" stylesheets="@styles/style.css" text="All Taskes" textFill="#e8e8e8">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                                 <cursor>
+                                    <Cursor fx:constant="SW_RESIZE" />
+                                 </cursor>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                        <HBox fx:id="dashboard1" prefHeight="350.0" prefWidth="780.0" visible="false">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="394.0" prefWidth="260.0" style="-fx-background-color: #474973; -fx-background-radius: 10;">
+                                 <children>
+                                    <ImageView fitHeight="103.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Assets/icons8-task-64%20(1).png" />
+                                       </image>
+                                       <VBox.margin>
+                                          <Insets bottom="50.0" />
+                                       </VBox.margin>
+                                    </ImageView>
+                                    <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="261.0" styleClass="tachebtn" stylesheets="@styles/style.css" text="Tache a faires" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" right="5.0" top="20.0" />
+                                 </HBox.margin>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="394.0" prefWidth="260.0" style="-fx-background-color: #474973; -fx-background-radius: 10;">
+                                 <children>
+                                    <ImageView fitHeight="103.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Assets/icons8-task-50.png" />
+                                       </image>
+                                       <VBox.margin>
+                                          <Insets bottom="50.0" />
+                                       </VBox.margin>
+                                    </ImageView>
+                                    <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="261.0" styleClass="tachebtn" stylesheets="@styles/style.css" text="Tache en cours">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" right="5.0" top="20.0" />
+                                 </HBox.margin>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="394.0" prefWidth="260.0" style="-fx-background-color: #474973; -fx-background-radius: 10;">
+                                 <children>
+                                    <ImageView fitHeight="103.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Assets/icons8-task-completed-50.png" />
+                                       </image>
+                                       <VBox.margin>
+                                          <Insets bottom="50.0" />
+                                       </VBox.margin>
+                                    </ImageView>
+                                    <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="261.0" styleClass="tachebtn" stylesheets="@styles/style.css" text="Tache Terminee">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" right="5.0" top="20.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="addproject1" visible="false">
+                           <children>
+                              <AnchorPane prefHeight="442.0" prefWidth="385.0">
+                                 <children>
+                                    <ImageView fitHeight="301.0" fitWidth="308.0" layoutX="35.0" layoutY="116.0" opacity="0.71" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Assets/—Pngtree—vector%20task%20icon_4091626.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label id="idTitle" fx:id="idTitle11" layoutX="151.0" layoutY="53.0" prefHeight="47.0" prefWidth="140.0" text="your project ,">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="idTitle" fx:id="idTitle1" layoutX="70.0" layoutY="52.0" prefHeight="47.0" prefWidth="72.0" text="Create " textFill="#1d72f2">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="idTitle" fx:id="idTitle111" layoutX="37.0" layoutY="92.0" prefHeight="47.0" prefWidth="230.0" text="and start managing ">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <Label id="idTitle" fx:id="idTitle1111" layoutX="239.0" layoutY="93.0" prefHeight="47.0" prefWidth="94.0" text=" better !" textFill="#4dbc43">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <VBox alignment="CENTER" prefHeight="442.0" prefWidth="377.0">
+                                 <children>
+                                    <Label fx:id="LabelOfPrj1" alignment="CENTER" prefHeight="17.0" prefWidth="308.0">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="AddTitleprj1" prefHeight="41.0" prefWidth="279.0" promptText="Project title" style="-fx-background-radius: 30px;">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="20.0" right="20.0" />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </TextField>
+                                    <TextField fx:id="AddClientprj1" prefHeight="41.0" prefWidth="279.0" promptText="Client" style="-fx-background-radius: 30px;">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="20.0" right="20.0" />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </TextField>
+                                    <TextField fx:id="AddCategorieprj1" prefHeight="41.0" prefWidth="279.0" promptText="Categorie" style="-fx-background-radius: 30px;">
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="20.0" right="20.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="AddDescriptionprj1" prefHeight="70.0" prefWidth="279.0" promptText="Description" style="-fx-background-radius: 30px;">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="20.0" right="20.0" />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </TextField>
+                                    <DatePicker fx:id="AddDBprj1" nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="273.0" promptText="Date Debut" style="-fx-background-radius: 15px; -fx-background-color: transparant;">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="20.0" right="20.0" />
+                                       </VBox.margin>
+                                    </DatePicker>
+                                    <DatePicker fx:id="AddDFprj1" nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="273.0" promptText="Date fin" style="-fx-background-radius: 15px; -fx-background-color: transparant;">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="20.0" right="20.0" />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </DatePicker>
+                                    <Button id="Btn1" fx:id="newprjBtn1" mnemonicParsing="false" onAction="#addproject" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #143399; -fx-background-radius: 20px;" text="Create project" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="20.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <ScrollPane fx:id="listeproject1" prefHeight="364.0" prefWidth="740.0" style="-fx-background-color: #ffffff;" visible="false">
+                           <content>
+                              <GridPane fx:id="projectGrid1" style="-fx-background-color: #ffffff;">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                        <AnchorPane fx:id="SearchProject1" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label id="idTitle" fx:id="idTitle131" layoutX="260.0" layoutY="3.0" prefHeight="53.0" prefWidth="273.0" text="Edit Your Profil">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Pane layoutX="147.0" layoutY="144.0" prefHeight="237.0" prefWidth="802.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <TextField fx:id="temail" layoutX="252.0" layoutY="-6.0" prefHeight="40.0" prefWidth="266.0" promptText="email" style="-fx-border-radius: 70; -fx-background-radius: 70;" styleClass="transparent">
+                                       <font>
+                                          <Font name="Cambria" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="50.0" />
+                                       </padding>
+                                    </TextField>
+                                    <PasswordField fx:id="paswd" layoutX="252.0" layoutY="58.0" prefHeight="40.0" prefWidth="266.0" promptText="     password" style="-fx-border-radius: 70px; -fx-background-radius: 70px;" />
+                                    <PasswordField fx:id="cpaswd" layoutX="252.0" layoutY="119.0" prefHeight="40.0" prefWidth="266.0" promptText="   confirm password" style="-fx-background-radius: 70px; -fx-background-radius: 70px;" />
+                                    <Button id="Btn1" fx:id="Search_and_join_btn1" layoutX="312.0" layoutY="206.0" mnemonicParsing="false" onAction="#onHelloButtonClick" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #143399; -fx-background-radius: 20px;" text="valider" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </Pane>
+                              <TextField fx:id="Fullname" layoutX="253.0" layoutY="82.0" prefHeight="40.0" prefWidth="266.0" promptText="Full Name" style="-fx-border-radius: 70; -fx-background-radius: 70;" styleClass="transparent">
+                                 <font>
+                                    <Font name="Cambria" size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                              </TextField>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </StackPane>
+               </children>
+            </Pane>
          </children>
       </StackPane>
-    </children>
+
+
+   </children>
 </AnchorPane>
